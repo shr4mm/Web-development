@@ -1,0 +1,39 @@
+<!--
+
+   Task: Implement function findStringOnce so it returns array that contains unique elemnts of initial array.
+    
+   Try to use obj(line 16), and function Object.Keys(line 20).
+
+-->
+
+<html>
+<head>
+    <title>���������� JavaScript</title>
+
+    <script type="text/javascript">
+
+        function findStringOnce(arr) {
+            
+            var obj = {};
+
+        for (var i = 0; i < arr.length; i++) {
+            obj[arr[i]] = true;
+    }
+
+        return Object.keys(obj);
+        }
+
+        
+        var initialArr = ["First", "Second", "First", "Third", "Fourth", "Fourth" ];
+
+        var strings = findStringOnce(initialArr);
+
+        console.log("Initial array: " + initialArr.join(', '));
+        console.log("</br>");
+        console.log("Unique elements: " + strings.join(', '));
+
+    </script>
+</head>
+<body>
+</body>
+</html>

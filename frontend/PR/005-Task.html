@@ -1,0 +1,36 @@
+﻿<!--
+
+    Task: Implement function toCamelCase. Func takes string as a param and removes dashes
+    and make next symbol upper case.
+    
+    *In advance improve functionality so you can customize length or anyother ideas are welcome.
+
+    Example:
+    toCamelCase("background-color") returns backgroundColor
+
+-->
+
+<html>
+<head><meta charset="utf-8"></head>
+<body>
+<script>
+
+    function toCamelCase(str) {
+
+        for(var i = 0; i < str.length; i++){
+            if(str.charAt(i) == '-'){
+                var char = str.charAt(i + 1);
+                str = str.substr(0, i) + char.toUpperCase() + str.substr(i + 2, str.length - i - 2);
+            }
+        }
+        return str;
+
+    }
+
+    alert(toCamelCase("background-color"));
+    alert(toCamelCase("list-style-image"));
+
+</script>
+
+</body>
+</html>
