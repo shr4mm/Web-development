@@ -1,0 +1,37 @@
+<!--
+
+   Task: Implement function findUnique so it returns array contains all elements of initial array without duplicates. Try to use reduce().
+
+-->
+
+<html>
+<head>
+    <title>JavaScript</title>
+
+    <script type="text/javascript">
+
+        function findUnique(arr) {
+        return arr.reduce((uniqueElements, currentElement) => {
+            
+            if (!uniqueElements.includes(currentElement)) {
+                return [...uniqueElements, currentElement];
+            }
+            return uniqueElements;
+            }, []); 
+    }
+
+
+        var initialArr = [1, 2, 3, 1, 5, 3, 4, 1];
+
+        var unique = findUnique(initialArr);
+
+        console.log("Initial array: " + initialArr);
+        console.log("</br>");
+        console.log("Unique elements: " + unique);
+
+    </script>
+
+</head>
+<body>
+</body>
+</html>

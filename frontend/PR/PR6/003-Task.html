@@ -1,0 +1,60 @@
+﻿<!--
+
+    Implement Calculator ctor, that creates extendable calc objects.
+    By default Calculator supports "+" and "-" (line 24 and 25)
+
+    Extend functionality with addOperation operation to add new functions (line 27 and 28).
+
+-->
+
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <script>
+
+            
+        function Calculator() {
+           
+            this.operations = {
+                "+": (a, b) => a + b,
+                "-": (a, b) => a - b
+            };
+
+           
+            this.calculate = function(expression) {
+            
+                let parts = expression.split(' ');
+                let a = parseFloat(parts[0]);
+                let operator = parts[1];
+                let b = parseFloat(parts[2]);
+
+              
+                if (this.operations[operator]) {
+                    return this.operations[operator](a, b);
+                } else {
+                    throw new Error("Operation not supported");
+                }
+            };
+
+            this.addOperation = function(operator, func) {
+                this.operations[operator] = func;
+            };
+        }
+
+        var calc = new Calculator();
+
+        alert(calc.calculate("3 + 7")); // output 10
+        alert(calc.calculate("7 - 3")); // output 4
+
+        // Extend calculator with new operations
+        calc.addOperation("*", function(a, b) { return a * b; });
+        calc.addOperation("/", function(a, b) { return a / b; });
+
+        alert(calc.calculate("3 * 7")); // output 21
+        alert(calc.calculate("8 / 4")); // output 2
+
+    </script>
+</body>
+</html>

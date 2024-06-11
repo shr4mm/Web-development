@@ -1,0 +1,26 @@
+﻿<html>
+    <head>
+        <meta charset="utf-8">
+        <script>
+            function toCamelCase(str) {
+                let parts = str.split('-');
+
+                for (let i = 1; i < parts.length; i++) {
+                    parts[i] = parts[i].charAt(0).toUpperCase() + parts[i].slice(1);
+                }
+
+                return parts.join('');
+            }
+            
+            alert(toCamelCase("background-color"));
+            alert(toCamelCase("list-style-image"));
+
+        </script>
+    </head>
+
+    <body>
+        <h1>ffff</h1>
+
+    </body>
+</html>
+

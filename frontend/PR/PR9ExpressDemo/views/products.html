@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Express App: Catalog </title>
+</head>
+<body>
+    <a href="/">Home</a>&ensp;<a href="/about">About</a>
+    <h3>Products</h3>
+    <input type="button" value="Create new" onclick='document.location="/create.html"'>
+
+    <ul id="productsContainer">
+    </ul>
+
+    <script>
+        window.onload = (event) => {
+            fillProductsList();
+
+        };
+        
+        function fillProductsList(){
+            fetch('/api/products')
+            .then(res => {
+                return res.json();
+            })
+            .then(data => {
+                const container = document.getElementById('productsContainer');
+                data.forEach(item => {
+                    const newLiItem = `<li><em><input type="button" value="Delete" onclick="deleteProduct(${item.id})"></em>
+                        <em><input type="button" value="Update" onclick="updateProduct(${item.id})"></em>${item.name}</li>`;
+                    container.insertAdjacentHTML('beforeend', newLiItem);
+                })
+            })
+            .catch(error => {
+                console.log(error);
+                alert(error);
+            });
+        }        
+
+        function deleteProduct(id){
+            const confirmResult = confirm("Do you want to delete product?");
+            if(!confirmResult){return;}
+
+            
+            fetch(`/api/products/${id}`, {
+                method: 'DELETE'})
+                .then(document.location = "/products")
+                .catch(error => {
+                    console.log(error);
+                    alert(error);
+                });
+        }
+
+        function updateProduct(id){
+            const newProductName = prompt('What the new Product name?');
+
+            if(!newProductName){return;}
+
+            fetch(`/api/products/${id}`, {
+                method: 'PUT',
+                headers: {
+                        'Content-Type': "application/json"
+                    },
+                body: JSON.stringify({ name: newProductName})
+                })
+                .then(document.location = "/products")
+                .catch(error => {
+                    console.log(error);
+                    alert(error);
+                });
+
+        }
+</script>
+</body>
+</html>
